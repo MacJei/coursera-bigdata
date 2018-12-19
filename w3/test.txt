@@ -1,0 +1,3 @@
+111	Since you already have mapper's and reducer's code you can emulate Hadoop's behavior using a simple bash:
+222	You can safe a lot of time, by debugging your applications locally. You can easily do it by emulating Hadoop’s workflow using bash.
+333	CongraYou already know that every Hadoop job has 3 stages:
