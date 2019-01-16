@@ -29,7 +29,7 @@ for line in sys.stdin:
         #print >> sys.stderr, "reporter:counter:Total words, 1"
     #wordSum += len(words) 
        
-print >> sys.stderr, "reporter:counter:Total words,%d" % wordSum
-print >> sys.stderr, "reporter:counter:Stop words,%d" % stopWordSum
+print >> sys.stderr, "reporter:counter:Total words,twords,%d" % wordSum
+print >> sys.stderr, "reporter:counter:Stop words,swords,%d" % stopWordSum
 
 print "wordSum-stopWordSum\t%d\t%d" % (wordSum, stopWordSum)
