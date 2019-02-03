@@ -12,15 +12,21 @@ for line in sys.stdin:
     except ValueError as e:
         #print "Parse error:", e
         continue
+
     if current_article_id != article_id:
-        wordsInArticle = count  # first string is always words in article count
-        current_article_id = article_id
-        current_word = None
-        print "wordsInArticle:", word, wordsInArticle
-        continue
-    if current_word != word:
-        if current_word != None: 
+        if current_word != None:
             print "%s\t%s\t%f" % (current_article_id, current_word, 1.0*word_sum/wordsInArticle)
+            word_sum = 0
+            current_word = word
+        wordsInArticle = count  # first article string is always words in article count
+        current_article_id = article_id
+        #print "wordsInArticle:", word, wordsInArticle
+        continue
+        
+    if current_word != word :
+        if current_word != None and current_word != '!wordsInArticle': 
+            print "%s\t%s\t%f" % (current_article_id, current_word, 1.0*word_sum/wordsInArticle)
+            #print "%s\t%s\t%d\t%d" % (current_article_id, current_word, word_sum, wordsInArticle)
         word_sum = 0
         current_word = word
     word_sum += count

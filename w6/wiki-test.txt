@@ -1,3 +1,3 @@
-17	Since you already have mapper's and reducer's code you can emulate Hadoop's behavior using a simple bash: Hint: all Wikipedia article_ids are greater than 0.
-23	You can safe a lot of time, by debugging your CongraYou applications locally. You can easily do it by emulating Hadoop’s workflow using bash.
-10	CongraYou already know that every Hadoop job has 3 stages: emulate Hadoop's behavior
+17	Since you already have mapper's and reducer's code you can emulate Hadoop's behavior using a simple bash: Hint: all Wikipedia article_ids are greater than 0.  Hint: all Wikipedia
+23	You can safe a lot of time, by debugging your CongraYou applications locally. You can easily do it by emulating Hadoop’s workflow using bash. debugging your CongraYou applications
+10	CongraYou already know that every Hadoop job has 3 stages: emulate Hadoop's behavior Hadoop job has 3 stages
