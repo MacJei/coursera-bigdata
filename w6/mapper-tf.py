@@ -17,8 +17,6 @@ with open(path) as stopWordsFile:
         except ValueError as e:
             continue
 
-wordSum, stopWordSum = 0, 0
-
 import string
 
 for line in sys.stdin:
@@ -32,13 +30,14 @@ for line in sys.stdin:
     wordsInArticle = 0
     
     for word in words:
-        if word.strip(string.punctuation) in stopWords:
-            stopWordSum += 1
+        word = word.strip(string.punctuation)
+        if word in stopWords:
             print("reporter:counter:Wiki stats,Stop words found,%d" % 1, file=sys.stderr)
             continue
-        wordSum += 1
+        if word == "":
+            print("reporter:counter:Wiki stats,Null words found,%d" % 1, file=sys.stderr)
+            continue
         wordsInArticle += 1
-        #print >> sys.stderr, "reporter:counter:Wiki stats,Total words ound,%d" % 1
         print("reporter:counter:Wiki stats,Total words found,%d" % 1, file=sys.stderr)
         print(article_id, word.strip(string.punctuation), 1, sep='\t')
     print(article_id, "!wordsInArticle", wordsInArticle, sep='\t')
