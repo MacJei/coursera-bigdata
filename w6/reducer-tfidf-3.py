@@ -40,4 +40,4 @@ for line in sys.stdin:
 
     if tag == tagTf:
         #print word, current_word, tagIdf, "wordIdfSum", wordIdfSum
-        print "%s\t%s\t%f" % (current_word, article_id, calcTfIdf(count, calcIdf(wordIdfSum)))
+        print "%s\t%s\t%.6f" % (current_word, article_id, calcTfIdf(count, calcIdf(wordIdfSum)))

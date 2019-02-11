@@ -32,18 +32,26 @@ for line in sys.stdin:
 
     text = re.sub("^\W+|\W+$", "", text, flags=re.UNICODE)
     words = re.split("\W*\s+\W*", text, flags=re.UNICODE)
-    words = [unicode(word.strip(string.punctuation)).lower() for word in words if word.strip(string.punctuation) != ""]
 
-    wordsN = Counter(words)
-    wordsN = [(word.strip(), wordsN.get(word)) for word in wordsN if word not in stopWords]
-    
-    wordsInArticle = len(wordsN)
-    
-    for word in wordsN:
-        if word[0] == "":
+    wordsN = Counter()
+
+    wordsInArticle = 0
+
+    for word in words:
+        word = word.strip(string.punctuation).lower()
+        if word == "":
             print("reporter:counter:Wiki stats,Null words found,%d" % 1, file=sys.stderr)
             continue
-
+        if word in stopWords:
+            print("reporter:counter:Wiki stats,Stop words found,%d" % 1, file=sys.stderr)
+            continue
+        wordsInArticle += 1
         print("reporter:counter:Wiki stats,Total words found,%d" % 1, file=sys.stderr)
-        print(word[0], tagTf, article_id, calcTf(word[1], wordsInArticle), sep='\t')
-        print(word[0], tagIdf, '0', 1,  sep='\t')  # zero article_id never exists
+        #print(article_id, tagWord, word, 1, sep='\t')
+        wordsN[word] += 1
+
+    for wordN in wordsN:
+        count = wordsN.get(wordN)
+        print(wordN, tagTf, article_id, "%.6f" % calcTf(count, wordsInArticle), sep='\t')
+        print(wordN, tagIdf, '0', 1,  sep='\t')  # zero article_id never exists
+
